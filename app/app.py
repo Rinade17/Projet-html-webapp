@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, render_template
 import datetime
 
 app = Flask(__name__)
@@ -7,22 +7,14 @@ mood_history = []
 
 @app.route('/')
 def intro():
-    return send_file('intro.html')
+    return render_template('intro.html')
 
 @app.route('/detection')
 def detection():
-    return send_file('index.html')  
+    return render_template('index.html')  
 @app.route('/history')
 def history():
-    return send_file('history.html')
-
-@app.route('/styles.css')
-def serve_css():
-    return send_file('styles.css')
-
-@app.route('/script.js')
-def serve_js():
-    return send_file('script.js')
+    return render_template('history.html')
 
 @app.route('/save_mood', methods=['POST'])
 def save_mood():
