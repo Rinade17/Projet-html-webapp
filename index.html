@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mood Detector - Detection</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="bubble">
+      <h1>Rinade's Super Cool Machine Learning Model - Image Edition 📷⭐⭐</h1>
+      <p>
+        Welcome to my real-time mood detection application! This innovative tool
+        uses machine learning to analyze facial expressions through your camera
+        and detect your current emotional state. Simply allow camera access and
+        show your face to get started.
+      </p>
+      <p>
+        The model is trained to recognize five different emotional states:
+        <br />😊 Happy - when you're smiling and feeling joyful <br />😢 Sad -
+        when you're feeling down or melancholic <br />😠 Angry - when you're
+        frustrated or upset <br />😐 Neutral - when you're feeling calm and
+        expressionless
+      </p>
+
+      <button type="button" onclick="init()" id="start">Start!</button>
+
+      <button id="submit-btn" style="display: none; margin-top: 20px; background: #27ae60; color: white;">
+          ✅ Submit Current Mood to Database
+      </button>
+
+      <div id="webcam-container"></div>
+      <div id="label-container"></div>
+    </div>
+
+    <div class="bubble">
+        <button onclick="window.location.href='history.html'">
+            View History
+        </button>
+        <button onclick="window.location.href='/'">
+            Back to Home
+        </button>
+    </div>
+
+    <div class="bubble">
+      <h1>About the Developer</h1>
+        <p><strong>Rinade ELAZZOUZI</strong></p>
+        <p>Hi! I'm a 16-year-old developer from Morocco. I'm passionate about STEM, especially coding and science. I also love reading
+        and swimming, which help me relax and stay motivated. I created this project to explore machine learning and web technologies.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>

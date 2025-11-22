@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mood History</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="bubble">
+        <h1>📊 Mood History</h1>
+        
+        <div id="mood-list">
+            <p>Loading your mood history...</p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <button onclick="window.location.href='/'">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        async function loadHistory() {
+            try {
+                const response = await fetch('/get_history');
+                const data = await response.json();
+                
+                const moodList = document.getElementById('mood-list');
+                
+                if (data.moods.length === 0) {
+                    moodList.innerHTML = `
+                        <div style="text-align: center; padding: 40px;">
+                            <p style="font-size: 1.5em; color: #666;">No mood data yet! 😴</p>
+                            <p>Go to the detection page, start the camera and click "Submit" to save your moods.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let html = '<h3>Your Saved Moods:</h3>';
+                data.moods.forEach((mood, index) => {
+                    html += `
+                        <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #3498db;">
+                            <strong>#${index + 1}</strong> - 
+                            <span style="font-size: 1.3em;">${getEmoji(mood.emotion)}</span>
+                            <strong>${mood.emotion}</strong> 
+                            (${Math.round(mood.confidence * 100)}% confidence)
+                            <br>
+                            <small style="color: #666;">📅 ${mood.timestamp}</small>
+                        </div>
+                    `;
+                });
+                
+                moodList.innerHTML = html;
+            } catch (error) {
+                document.getElementById('mood-list').innerHTML = 
+                    '<p style="color: red;">Error loading history. Make sure the backend is running.</p>';
+            }
+        }
+        
+        function getEmoji(emotion) {
+            const emojis = {
+                'happy': '😊',
+                'sad': '😢', 
+                'angry': '😠',
+                'neutral': '😐'
+            };
+            return emojis[emotion.toLowerCase()] || '❓';
+        }
+        
+        loadHistory();
+    </script>
+</body>
+</html>
