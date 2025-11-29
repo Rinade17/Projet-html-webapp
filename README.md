@@ -40,7 +40,7 @@ Mood Detector is a web application that uses machine learning to analyze facial 
 - Model URL: `https://teachablemachine.withgoogle.com/models/oiYTgDJfX/`
 
 ## Author
-- Created by Rinade17
+- Created by ELAZZOUZI Rinade
 
 ## License
 This project is for educational and personal use.
